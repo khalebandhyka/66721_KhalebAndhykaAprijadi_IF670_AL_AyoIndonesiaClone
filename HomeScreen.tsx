@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {SafeAreaView, StatusBar, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, FlatList, Dimensions, ImageBackground} from 'react-native';
 import { Ionicons, MaterialIcons, FontAwesome5, Feather, AntDesign } from '@expo/vector-icons';
 import CarouselCard from './CarouselCard'; 
+import PaymentConfirmation from './PaymentConfirmation';
 
 interface VenueItem {
     id: string;
@@ -146,10 +147,10 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         {/* Main Cards */}
         <View style={styles.cardsContainer}>
           {/* Venue Booking Card */}
-          <View style={styles.card}>
+          <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('VenueBookingScreen')}>
             <Image
-            source={require('./assets/lapanganbadminton.jpeg')}
-            style={styles.cardImage}
+              source={require('./assets/lapanganbadminton.jpeg')}
+              style={styles.cardImage}
               resizeMode="cover"
             />
             <View style={styles.cardIconContainer}>
@@ -161,7 +162,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
               <Text style={styles.cardTitle}>Venue Booking</Text>
               <Text style={styles.cardSubtitle}>Quick & Easy!</Text>
             </View>
-          </View>
+          </TouchableOpacity>
 
           {/* Open Play Card */}
           <View style={styles.card}>

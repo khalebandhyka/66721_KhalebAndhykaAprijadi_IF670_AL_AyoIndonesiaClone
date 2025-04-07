@@ -1,4 +1,3 @@
-// ChatScreen.tsx
 import React, { useState, useRef, useEffect } from 'react';
 import {
   SafeAreaView,
@@ -22,7 +21,6 @@ import {
   AntDesign 
 } from '@expo/vector-icons';
 
-// Message interface
 interface Message {
   id: string;
   text: string;
@@ -31,7 +29,6 @@ interface Message {
   isMe: boolean;
 }
 
-// Community chat data
 interface ChatItem {
   id: string;
   name: string;
@@ -221,7 +218,6 @@ const communityChats: ChatItem[] = [
   },
 ];
 
-// Direct chat data
 const directChats: ChatItem[] = [
   {
     id: 'd1',
@@ -370,7 +366,6 @@ const ChatScreen = () => {
   const [newMessage, setNewMessage] = useState('');
   const scrollViewRef = useRef<ScrollView>(null);
 
-  // Load messages when a chat is selected
   useEffect(() => {
     if (selectedChat && selectedChat.messages) {
       setMessages(selectedChat.messages);
@@ -379,7 +374,6 @@ const ChatScreen = () => {
     }
   }, [selectedChat]);
 
-  // Handle sending a new message
   const handleSendMessage = () => {
     if (newMessage.trim() === '' || !selectedChat) return;
     
@@ -465,7 +459,6 @@ const ChatScreen = () => {
     </TouchableOpacity>
   );
 
-  // Render message bubble
   const renderMessage = (message: Message) => (
     <View 
       key={message.id} 
@@ -516,7 +509,6 @@ const ChatScreen = () => {
       </View>
 
       {selectedChat ? (
-        // Chat detail view
         <KeyboardAvoidingView 
           style={styles.chatDetailContainer}
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}

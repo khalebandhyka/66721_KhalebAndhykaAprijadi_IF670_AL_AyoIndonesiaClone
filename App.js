@@ -14,11 +14,16 @@ import DashboardScreen from './DashboardScreen';
 import ChatScreen from './ChatScreen';
 import ProfileScreen from './ProfileScreen';
 import ExploreScreen from './ExploreScreen';
+import VenueBookingScreen from './VenueBookingScreen';
+import VenueDetailScreen from './VenueDetailScreen';
+import DatePickingScreen from './DatePickingScreen';
+import ConfirmationPage from './ConfirmationPage';
+import PaymentMethod from './PaymentMethod';
+import PaymentConfirmation from './PaymentConfirmation';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-// Bottom Tabs as a component
 function MainTabs() {
   return (
     <Tab.Navigator
@@ -86,6 +91,12 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="MainTabs" component={MainTabs} />
+        <Stack.Screen name="VenueBookingScreen" component={VenueBookingScreen} />
+        <Stack.Screen name="VenueDetailScreen" component={VenueDetailScreen} />
+        <Stack.Screen name="DatePickingScreen" component={DatePickingScreen} />
+        <Stack.Screen name="ConfirmationPage" component={ConfirmationPage} />
+        <Stack.Screen name="PaymentMethod" component={PaymentMethod} />
+        <Stack.Screen name="PaymentConfirmation" component={PaymentConfirmation} />           
       </Stack.Navigator>
     </NavigationContainer>
   );

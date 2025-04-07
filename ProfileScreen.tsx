@@ -1,4 +1,3 @@
-// ProfileScreen.tsx
 import React, { useState } from 'react';
 import {
   SafeAreaView,
@@ -1423,7 +1422,6 @@ const styles = StyleSheet.create({
   bottomSpacing: {
     height: 80,
   },
-  // Modal styles
   modalContainer: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -1527,7 +1525,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
-  // Add sport modal
   modalSubtitle: {
     fontSize: 14,
     color: '#666',
