@@ -13,134 +13,128 @@ import {
 } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 
-// Types
 interface Venue {
   id: string
   name: string
   location: string
-  image: string
+  image: any
   rating: number
   price: string
   distance: string
   isNew?: boolean
 }
 
-// Update the component definition to include navigation prop
 const VenueBookingScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [activeCategory, setActiveCategory] = useState<string>("All")
 
-  // Mock data for new venues
   const newVenues: Venue[] = [
     {
       id: "1",
-      name: "Grand Sports Arena",
-      location: "Downtown",
-      image: "https://placeholder.svg?height=200&width=300",
+      name: "Rekket Space Badminton Hall",
+      location: "Rawa Buntu",
+      image: require('./assets/rekket.jpg'),
       rating: 4.8,
-      price: "$25/hr",
+      price: "Rp59.000,-/jam",
       distance: "2.5 km",
       isNew: true,
     },
     {
       id: "2",
-      name: "City Football Field",
-      location: "Westside",
-      image: "https://placeholder.svg?height=200&width=300",
+      name: "Matrix Badminton",
+      location: "Tangerang Selatan",
+      image: require('./assets/matrixbadminton.jpeg'),
       rating: 4.6,
-      price: "$20/hr",
+      price: "Rp500.000,-/jam",
       distance: "3.2 km",
       isNew: true,
     },
     {
       id: "3",
-      name: "Tennis Club Pro",
-      location: "Eastside",
-      image: "https://placeholder.svg?height=200&width=300",
+      name: "Royal Badminton",
+      location: "BSD",
+      image: require('./assets/royalbadminton.jpg'),
       rating: 4.9,
-      price: "$30/hr",
-      distance: "1.8 km",
+      price: "Rp500.000,-/jam",
+      distance: "2.5 km",
       isNew: true,
     },
     {
       id: "4",
-      name: "Olympic Swimming Center",
-      location: "North District",
-      image: "https://placeholder.svg?height=200&width=300",
+      name: "Tantowi Ahmad Badminton",
+      location: "BSD",
+      image: require('./assets/tantowi.jpeg'),
       rating: 4.7,
-      price: "$22/hr",
-      distance: "4.1 km",
+      price: "Rp500.000,-/jam",
+      distance: "1.5 km",
       isNew: true,
     },
   ]
 
-  // Mock data for venue options
   const venueOptions: Venue[] = [
     {
       id: "5",
-      name: "Basketball Court",
-      location: "Central Park",
-      image: "https://placeholder.svg?height=150&width=150",
-      rating: 4.5,
-      price: "$18/hr",
-      distance: "1.2 km",
+      name: "Rekket Space Badminton Hall",
+      location: "Rawa Buntu",
+      image: require('./assets/rekket.jpg'),
+      rating: 4.8,
+      price: "Rp59.000,-/jam",
+      distance: "2.5 km",
     },
     {
       id: "6",
-      name: "Soccer Field",
-      location: "Sports Complex",
-      image: "https://placeholder.svg?height=150&width=150",
-      rating: 4.3,
-      price: "$22/hr",
-      distance: "2.7 km",
+      name: "Matrix Badminton",
+      location: "Tangerang Selatan",
+      image: require('./assets/matrixbadminton.jpeg'),
+      rating: 4.6,
+      price: "Rp500.000,-/jam",
+      distance: "3.2 km",
     },
     {
       id: "7",
-      name: "Badminton Hall",
-      location: "Recreation Center",
-      image: "https://placeholder.svg?height=150&width=150",
-      rating: 4.4,
-      price: "$15/hr",
-      distance: "3.5 km",
+      name: "Royal Badminton",
+      location: "BSD",
+      image: require('./assets/royalbadminton.jpg'),
+      rating: 4.9,
+      price: "Rp150.000,-/jam",
+      distance: "2.5 km",
     },
     {
       id: "8",
-      name: "Volleyball Court",
-      location: "Beach Club",
-      image: "https://placeholder.svg?height=150&width=150",
-      rating: 4.6,
-      price: "$20/hr",
-      distance: "5.0 km",
+      name: "Tantowi Ahmad Badminton",
+      location: "BSD",
+      image: require('./assets/tantowi.jpeg'),
+      rating: 4.7,
+      price: "Rp75.000,-/jam",
+      distance: "1.5 km",
     },
     {
       id: "9",
-      name: "Golf Course",
-      location: "Greenfield",
-      image: "https://placeholder.svg?height=150&width=150",
-      rating: 4.8,
-      price: "$40/hr",
-      distance: "7.2 km",
+      name: "Jawara Badminton Hall",
+      location: "Pagedangan",
+      image: require('./assets/jawara.jpg'),
+      rating: 4.7,
+      price: "Rp70.000,-/jam",
+      distance: "9.5 km",
     },
     {
       id: "10",
-      name: "Cricket Ground",
-      location: "Sports Village",
-      image: "https://placeholder.svg?height=150&width=150",
-      rating: 4.2,
-      price: "$25/hr",
-      distance: "4.3 km",
+      name: "Griya Anabatic Badminton",
+      location: "Pagedangan",
+      image: require('./assets/anabatic.jpg'),
+      rating: 4.6,
+      price: "Rp80.000,-/jam",
+      distance: "9.7 km",
     },
   ]
 
-  // Categories for filter
-  const categories = ["All", "Football", "Basketball", "Tennis", "Swimming", "Volleyball"]
+  const categories = ["All", "Football", "Basketball", "Badminton", "Tennis", "Mini Soccer"]
 
-  // Render new venue item
   const renderNewVenueItem = ({ item }: { item: Venue }) => (
     <TouchableOpacity
       style={styles.newVenueCard}
       onPress={() => navigation.navigate("VenueDetailScreen", { venueId: item.id })}
     >
-      <Image source={{ uri: item.image }} style={styles.newVenueImage} />
+      <Image source={item.image } style={styles.newVenueImage} />
       <View style={styles.newVenueOverlay}>
         <View style={styles.newVenueInfo}>
           <Text style={styles.newVenueName}>{item.name}</Text>
@@ -163,7 +157,7 @@ const VenueBookingScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       style={styles.venueOptionCard}
       onPress={() => navigation.navigate("VenueDetailScreen", { venueId: item.id })}
     >
-      <Image source={{ uri: item.image }} style={styles.venueOptionImage} />
+      <Image source={ item.image } style={styles.venueOptionImage} />
       <View style={styles.venueOptionInfo}>
         <Text style={styles.venueOptionName}>{item.name}</Text>
         <View style={styles.venueOptionDetails}>

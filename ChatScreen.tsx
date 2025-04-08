@@ -32,7 +32,7 @@ interface Message {
 interface ChatItem {
   id: string;
   name: string;
-  avatar: string;
+  avatar: any;
   lastMessage: string;
   time: string;
   unread: number;
@@ -45,7 +45,7 @@ const communityChats: ChatItem[] = [
   {
     id: 'c1',
     name: 'Futsal Jakarta Barat',
-    avatar: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg',
+    avatar: require('./assets/futsaljakbar.jpg'),
     lastMessage: 'Ada yang mau main besok jam 7 malam?',
     time: '10:30 AM',
     unread: 3,
@@ -92,7 +92,7 @@ const communityChats: ChatItem[] = [
   {
     id: 'c2',
     name: 'Badminton Lovers',
-    avatar: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg',
+    avatar: require('./assets/badmintonloper.jpeg'),
     lastMessage: 'Siapa yang mau ikut turnamen minggu depan?',
     time: 'Yesterday',
     unread: 0,
@@ -132,7 +132,7 @@ const communityChats: ChatItem[] = [
   {
     id: 'c3',
     name: 'Basketball Jakarta',
-    avatar: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg',
+    avatar: require('./assets/komunitasbasketjkt.jpeg'),
     lastMessage: 'Lapangan di Senayan sudah dibuka lagi',
     time: 'Yesterday',
     unread: 5,
@@ -179,7 +179,7 @@ const communityChats: ChatItem[] = [
   {
     id: 'c4',
     name: 'Futsal Tangerang',
-    avatar: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg',
+    avatar: require('./assets/futsaltgr.jpg'),
     lastMessage: 'Siapa yang mau gabung tim untuk kompetisi bulan depan?',
     time: 'Monday',
     unread: 0,
@@ -221,8 +221,8 @@ const communityChats: ChatItem[] = [
 const directChats: ChatItem[] = [
   {
     id: 'd1',
-    name: 'Budi Santoso',
-    avatar: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg',
+    name: 'Christian Yoga',
+    avatar: require('./assets/cyoga.jpg'),
     lastMessage: 'Jadi main futsal nanti malam?',
     time: '12:45 PM',
     unread: 2,
@@ -252,8 +252,8 @@ const directChats: ChatItem[] = [
   },
   {
     id: 'd2',
-    name: 'Andi Wijaya',
-    avatar: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg',
+    name: 'Faisal',
+    avatar: require('./assets/Faisal.jpg'),
     lastMessage: 'Saya sudah booking lapangan untuk besok',
     time: 'Yesterday',
     unread: 0,
@@ -290,8 +290,8 @@ const directChats: ChatItem[] = [
   },
   {
     id: 'd3',
-    name: 'Dewi Lestari',
-    avatar: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg',
+    name: 'Kevin Sorensen',
+    avatar: require('./assets/kevinsorensenganteng.jpeg'),
     lastMessage: 'Terima kasih untuk gamenya tadi',
     time: 'Sunday',
     unread: 0,
@@ -328,8 +328,8 @@ const directChats: ChatItem[] = [
   },
   {
     id: 'd4',
-    name: 'Rudi Hartono',
-    avatar: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg',
+    name: 'Kevin Sanjaya Sukamuljo',
+    avatar: require('./assets/kevinsanjayasukamuljo.jpg'),
     lastMessage: 'Besok jadi latihan badminton?',
     time: 'Last week',
     unread: 0,
@@ -337,7 +337,7 @@ const directChats: ChatItem[] = [
       {
         id: 'd4m1',
         text: 'Besok jadi latihan badminton?',
-        sender: 'Rudi Hartono',
+        sender: 'Kevin Sanjaya Sukamuljo',
         time: 'Last week',
         isMe: false,
       },
@@ -351,7 +351,7 @@ const directChats: ChatItem[] = [
       {
         id: 'd4m3',
         text: 'Iya, di GOR yang biasa',
-        sender: 'Rudi Hartono',
+        sender: 'Kevin Sanjaya Sukamuljo',
         time: 'Last week',
         isMe: false,
       },
@@ -388,7 +388,6 @@ const ChatScreen = () => {
     const updatedMessages = [...messages, newMsg];
     setMessages(updatedMessages);
     
-    // Update the chat's messages
     if (selectedChat.isCommunity) {
       const updatedCommunityChats = communityChats.map(chat => {
         if (chat.id === selectedChat.id) {
@@ -401,7 +400,6 @@ const ChatScreen = () => {
         }
         return chat;
       });
-      // In a real app, you would update the state or context here
     } else {
       const updatedDirectChats = directChats.map(chat => {
         if (chat.id === selectedChat.id) {
@@ -425,14 +423,13 @@ const ChatScreen = () => {
     }, 100);
   };
 
-  // Render chat item
   const renderChatItem = ({ item }: { item: ChatItem }) => (
     <TouchableOpacity 
       style={styles.chatItem}
       onPress={() => setSelectedChat(item)}
     >
       <View style={styles.avatarContainer}>
-        <Image source={{ uri: item.avatar }} style={styles.avatar} />
+        <Image source={ item.avatar } style={styles.avatar} />
         {item.unread > 0 && (
           <View style={styles.unreadBadge}>
             <Text style={styles.unreadBadgeText}>{item.unread}</Text>

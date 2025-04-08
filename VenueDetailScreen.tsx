@@ -1,5 +1,3 @@
-"use client"
-
 import type React from "react"
 import { useState } from "react"
 import {
@@ -16,12 +14,11 @@ import {
 } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 
-// Types
 interface Venue {
   id: string
   name: string
   location: string
-  image: string
+  image: any
   rating: number
   price: string
   distance: string
@@ -42,13 +39,13 @@ interface Community {
   id: string
   name: string
   members: number
-  image: string
+  image: any
 }
 
 interface Review {
   id: string
   user: string
-  userImage: string
+  userImage: any
   rating: number
   comment: string
   date: string
@@ -57,7 +54,7 @@ interface Review {
 interface NearbyVenue {
   id: string
   name: string
-  image: string
+  image: any
   distance: string
   price: string
 }
@@ -67,122 +64,120 @@ const { width } = Dimensions.get("window")
 const VenueDetailScreen: React.FC<{ navigation: any; route: any }> = ({ navigation, route }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0)
 
-  // In a real app, you would get the venue data from route.params
-  // const { venueId } = route.params;
 
-  // Mock data for the selected venue
   const venue: Venue = {
     id: "5",
-    name: "Basketball Court",
-    location: "Central Park",
-    image: "https://placeholder.svg?height=300&width=400",
-    rating: 4.5,
-    price: "$18/hr",
-    distance: "1.2 km",
+    name: "Rekket Space Badminton Hall",
+    location: "Rawa Buntu",
+    image: require('./assets/rekket.jpg'),
+    rating: 4.8,
+    price: "Rp59.000,-/jam",
+    distance: "2.5 km",
     description:
-      "Professional basketball court with high-quality flooring, proper lighting, and standard dimensions. Perfect for both casual games and serious training sessions.",
-    facilities: ["Changing Rooms", "Showers", "Parking", "Water Dispensers", "Seating Area", "First Aid Kit"],
+    "The best and biggest badminton venue in South Tangerang.Hosting 14 BWF certified badminton courts. With a greatambiance making your badminton experience like never before.",
+        facilities: ["Jual Makanan Ringan", "Jual Minuman", "Parkir Mobil / Motor", "Ruang Ganti Shower", "Toilet Tribun Penonton", "Toko Badminton"],
     regulations: [
-      "No food or drinks on the court",
-      "Proper sports shoes required",
-      "Maximum 12 players per court",
-      "Booking cancellation must be 24 hours in advance",
-      "No smoking in the venue",
+      "WAJIB lepas alas kaki dari luar.",
+      "WAJIB memakai sepatu badminton ketika bermain",
+      "DILARANG Merokok",
+      "DILARANG Meludah",
+      "HINDARI membawa anak kecil karena resiko terluka",
+      "Membawa anak kecil WAJIB ditertibkan",
+      "DILARANG Bermain di Luar lapangan",
+      "MAKSIMAL 10 orang per lapangan",
     ],
-    activities: ["Basketball Training", "Amateur Tournaments", "Professional Coaching", "Youth Programs"],
+    activities: ["Badminton Training", "Amateur Tournaments", "Professional Coaching", "Youth Programs"],
     communities: [
       {
         id: "c1",
-        name: "Downtown Ballers",
+        name: "Pegasus Badminton",
         members: 124,
-        image: "https://placeholder.svg?height=50&width=50",
+        image: require('./assets/pegasus.jpg'),
       },
       {
         id: "c2",
-        name: "Weekend Warriors",
+        name: "Badminton Tangerang Selatan",
         members: 87,
-        image: "https://placeholder.svg?height=50&width=50",
+        image: require('./assets/badmintangsel.jpeg'),
       },
       {
         id: "c3",
-        name: "City Hoops",
+        name: "Connexion Badminton",
         members: 156,
-        image: "https://placeholder.svg?height=50&width=50",
+        image: require('./assets/connexion.jpeg'),
       },
     ],
     reviews: [
       {
         id: "r1",
-        user: "John Smith",
-        userImage: "https://placeholder.svg?height=40&width=40",
+        user: "Bernika Averina",
+        userImage: require('./assets/bernika.jpeg'),
         rating: 5,
-        comment: "Great court! The surface is well-maintained and the facilities are clean.",
+        comment: "Lapangannya Bagus! Permukaannya terawat dengan baik dan fasilitasnya bersih.",
         date: "2 days ago",
       },
       {
         id: "r2",
-        user: "Sarah Johnson",
-        userImage: "https://placeholder.svg?height=40&width=40",
-        rating: 4,
-        comment: "Good lighting and ventilation. Would recommend for evening games.",
+        user: "Nathanael Abednego",
+        userImage: require('./assets/abednego.jpg'),
+        rating: 4.9,
+        comment: "Pencahayaan dan ventilasi yang baik. Direkomendasikan untuk pertandingan malam.",
         date: "1 week ago",
       },
       {
         id: "r3",
-        user: "Mike Williams",
-        userImage: "https://placeholder.svg?height=40&width=40",
+        user: "Greysia Polii",
+        userImage: require('./assets/greysia.jpg'),
         rating: 4.5,
-        comment: "Professional setup. The staff is friendly and helpful.",
+        comment: "Penataannya profesional. Stafnya ramah dan membantu.",
         date: "2 weeks ago",
       },
     ],
     nearbyVenues: [
       {
         id: "n1",
-        name: "Tennis Court",
-        image: "https://placeholder.svg?height=120&width=200",
+        name: "GOR PANCA PUTRA",
+        image: require('./assets/pancaputra.jpg'),
         distance: "0.5 km",
-        price: "$22/hr",
+        price: "Rp60.000,- /jam",
       },
       {
         id: "n2",
-        name: "Soccer Field",
-        image: "https://placeholder.svg?height=120&width=200",
-        distance: "0.8 km",
-        price: "$25/hr",
+        name: "Dewantara Sports Center",
+        image: require('./assets/dewantara.jpeg'),
+        distance: "1.5 km",
+        price: "Rp2.000.000,- /jam",
       },
       {
         id: "n3",
-        name: "Volleyball Court",
-        image: "https://placeholder.svg?height=120&width=200",
-        distance: "1.0 km",
-        price: "$20/hr",
+        name: "Matrix Badminton Hall",
+        image: require('./assets/matrixbadminton.jpeg'),
+        distance: "4.0 km",
+        price: "Rp80.000,- /jam",
       },
       {
         id: "n4",
-        name: "Badminton Hall",
-        image: "https://placeholder.svg?height=120&width=200",
-        distance: "1.5 km",
-        price: "$15/hr",
+        name: "DM Sports Ciledug",
+        image: require('./assets/dmsport.jpg'),
+        distance: "6.5 km",
+        price: "Rp2.000.000,- /jam",
       },
     ],
-    hourlyRate: "$18/hr",
-    openHours: "6:00 AM - 10:00 PM",
-    address: "123 Central Park West, New York, NY 10023",
+    hourlyRate: "Rp59.000,- /jam",
+    openHours: "6:00 AM - 11:00 PM",
+    address: "Sebelah SPBU dan KFC, Jl. Buaran raya, Buaran, Kec. Serpong, Kota Tangerang Selatan, Banten 15310",
     images: [
-      "https://placeholder.svg?height=300&width=400",
-      "https://placeholder.svg?height=300&width=400",
-      "https://placeholder.svg?height=300&width=400",
-      "https://placeholder.svg?height=300&width=400",
+      require('./assets/rekket.jpg'),
+      require('./assets/rekket2.jpg'),
+      require('./assets/rekket3.jpg'),
+      require('./assets/rekket4.jpeg'),
     ],
   }
 
-  // Render venue image carousel
-  const renderImageItem = ({ item, index }: { item: string; index: number }) => (
-    <Image source={{ uri: item }} style={styles.venueImage} resizeMode="cover" />
+  const renderImageItem = ({ item, index }: { item: any; index: number }) => (
+    <Image source={item} style={styles.venueImage} resizeMode="cover" />
   )
 
-  // Render image pagination dots
   const renderPaginationDots = () => {
     return (
       <View style={styles.paginationContainer}>
@@ -196,19 +191,17 @@ const VenueDetailScreen: React.FC<{ navigation: any; route: any }> = ({ navigati
     )
   }
 
-  // Render community item
   const renderCommunityItem = ({ item }: { item: Community }) => (
     <TouchableOpacity style={styles.communityCard}>
-      <Image source={{ uri: item.image }} style={styles.communityImage} />
+      <Image source={item.image} style={styles.communityImage} />
       <Text style={styles.communityName}>{item.name}</Text>
       <Text style={styles.communityMembers}>{item.members} members</Text>
     </TouchableOpacity>
   )
 
-  // Render nearby venue item
   const renderNearbyVenueItem = ({ item }: { item: NearbyVenue }) => (
     <TouchableOpacity style={styles.nearbyVenueCard}>
-      <Image source={{ uri: item.image }} style={styles.nearbyVenueImage} />
+      <Image source={item.image} style={styles.nearbyVenueImage} />
       <View style={styles.nearbyVenueInfo}>
         <Text style={styles.nearbyVenueName}>{item.name}</Text>
         <View style={styles.nearbyVenueDetails}>
@@ -313,7 +306,7 @@ const VenueDetailScreen: React.FC<{ navigation: any; route: any }> = ({ navigati
             <Text style={styles.sectionTitle}>Location</Text>
             <View style={styles.mapContainer}>
               <Image
-                source={{ uri: "https://placeholder.svg?height=200&width=400&text=Map" }}
+                source={require('./assets/lokasirekket.jpg')}
                 style={styles.mapImage}
               />
             </View>
@@ -377,7 +370,7 @@ const VenueDetailScreen: React.FC<{ navigation: any; route: any }> = ({ navigati
             {venue.reviews?.map((review) => (
               <View key={review.id} style={styles.reviewContainer}>
                 <View style={styles.reviewHeader}>
-                  <Image source={{ uri: review.userImage }} style={styles.reviewUserImage} />
+                  <Image source={review.userImage} style={styles.reviewUserImage} />
                   <View style={styles.reviewUserInfo}>
                     <Text style={styles.reviewUserName}>{review.user}</Text>
                     <Text style={styles.reviewDate}>{review.date}</Text>
@@ -580,7 +573,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: "rgba(74, 128, 240, 0.1)",
+    backgroundColor: "rgba(155, 0, 0, 0.1)",
     justifyContent: "center",
     alignItems: "center",
     marginRight: 8,
@@ -614,7 +607,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: "rgba(74, 128, 240, 0.1)",
+    backgroundColor: "rgba(155, 0, 0, 0.1)",
     textAlign: "center",
     lineHeight: 24,
     color: "#9B0000",
@@ -639,7 +632,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: "rgba(74, 128, 240, 0.1)",
+    backgroundColor: "rgba(155, 0, 0, 0.1)",
     justifyContent: "center",
     alignItems: "center",
     marginRight: 12,

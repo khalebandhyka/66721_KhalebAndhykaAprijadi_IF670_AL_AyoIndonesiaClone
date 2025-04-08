@@ -39,8 +39,8 @@ function MainTabs() {
             iconComponent = <Ionicons name={focused ? 'chatbubble' : 'chatbubble-outline'} size={size} color={color} />;
           } else if (route.name === 'Profile') {
             return (
-              <View style={[styles.profileAvatar, { backgroundColor: focused ? '#8a56ff' : '#d8d8d8' }]}>
-                <Text style={[styles.profileAvatarText, { color: focused ? '#fff' : '#666' }]}>KA</Text>
+              <View style={[styles.profileAvatar, { backgroundColor: focused ? '#9B0000' : '#d8d8d8' }]}>
+                <Text style={[styles.profileAvatarText, { color: focused ? '#fff' : '#666' }]}>AG</Text>
               </View>
             );
           }

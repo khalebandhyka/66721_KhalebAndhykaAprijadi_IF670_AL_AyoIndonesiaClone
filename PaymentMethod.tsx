@@ -1,5 +1,3 @@
-"use client"
-
 import type React from "react"
 import { useState } from "react"
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, StatusBar, ScrollView, Image } from "react-native"
@@ -11,32 +9,32 @@ const PAYMENT_METHODS = [
     id: "virtual_account",
     name: "Virtual Account",
     fee: 0,
-    icon: "https://placeholder.svg?height=40&width=40&text=VA",
+    icon: require('./assets/BCA.jpg'), // Misalnya VA = BCA
     isExpandable: true,
   },
   {
     id: "alfamart",
     name: "Alfamart",
     fee: 6500,
-    icon: "https://placeholder.svg?height=40&width=40&text=Alfa",
+    icon: require('./assets/alfamart.jpg'),
   },
   {
     id: "gopay",
     name: "GoPay",
     fee: 4068,
-    icon: "https://placeholder.svg?height=40&width=40&text=GP",
+    icon: require('./assets/gopay.jpg'),
   },
   {
     id: "shopeepay",
     name: "ShopeePay",
     fee: 3714,
-    icon: "https://placeholder.svg?height=40&width=40&text=SP",
+    icon: require('./assets/shopeepay.jpg'),
   },
   {
     id: "ovo",
     name: "OVO",
     fee: 3478,
-    icon: "https://placeholder.svg?height=40&width=40&text=OVO",
+    icon: require('./assets/ovo.jpg'),
     disabled: true,
     disabledReason: "OVO is Currently under maintenance, please use another payment option.",
   },
@@ -44,46 +42,40 @@ const PAYMENT_METHODS = [
     id: "dana",
     name: "DANA",
     fee: 3478,
-    icon: "https://placeholder.svg?height=40&width=40&text=DANA",
+    icon: require('./assets/dana.jpg'),
   },
   {
     id: "qris",
     name: "QRIS",
     fee: 2770,
-    icon: "https://placeholder.svg?height=40&width=40&text=QRIS",
+    icon: require('./assets/qris.jpg'),
   },
   {
     id: "credit_card",
     name: "Kartu Kredit",
     fee: 7148,
-    icon: "https://placeholder.svg?height=40&width=40&text=CC",
+    icon: require('./assets/visa.jpg'), 
   },
-]
+];
+
 
 const PaymentMethod: React.FC<{ navigation: any; route: any }> = ({ navigation, route }) => {
-  // Get total price from route params
   const { totalPrice = 118000 } = route.params || {}
 
-  // State for selected payment method
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>("virtual_account")
 
-  // Handle payment method selection
   const handleSelectPaymentMethod = (id: string) => {
     setSelectedPaymentMethod(id)
   }
 
-  // Handle pay button press
   const handlePay = () => {
-    // Navigate to payment confirmation or processing screen
     navigation.navigate("PaymentConfirmation", {
       paymentMethod: selectedPaymentMethod,
       totalPrice,
     })
   }
 
-  // Handle view details
   const handleViewDetails = () => {
-    // Implementation for viewing payment details
   }
 
   return (
@@ -153,7 +145,7 @@ const PaymentMethod: React.FC<{ navigation: any; route: any }> = ({ navigation, 
               disabled={method.disabled}
             >
               <View style={styles.paymentMethodLeft}>
-                <Image source={{ uri: method.icon }} style={styles.paymentMethodIcon} />
+                <Image source={method.icon} style={styles.paymentMethodIcon} />
                 <View style={styles.paymentMethodInfo}>
                   <Text style={styles.paymentMethodName}>{method.name}</Text>
                   {method.fee > 0 && <Text style={styles.paymentMethodFee}>Rp {method.fee.toLocaleString()}</Text>}
@@ -238,7 +230,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    backgroundColor: "rgba(155, 0, 0, 0.1)",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -246,7 +238,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: "#fff",
+    backgroundColor: "rgba(155, 0, 0, 0.1)",
     justifyContent: "center",
     alignItems: "center",
   },

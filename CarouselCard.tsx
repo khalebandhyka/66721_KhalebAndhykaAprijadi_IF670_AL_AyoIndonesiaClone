@@ -7,19 +7,19 @@ const images = [
   {
     id: '1',
     source: require('./assets/promo1.jpg'),
-    title: 'Promo 1',
+    title: 'Mabar Seru, Menang Bersama di Ayo Indonesia!',
     description: 'Main bareng dan menang!',
   },
   {
     id: '2',
     source: require('./assets/promo2.jpg'),
-    title: 'Promo 2',
+    title: 'Tantang Lawan, Uji Kemampuan! Temukan Sparring Instan!',
     description: 'Cari lawan dengan cepat!',
   },
   {
     id: '3',
     source: require('./assets/promo3.jpg'),
-    title: 'Promo 3',
+    title: 'Gabung Komunitas, Biar Olahragamu Makin Seru!',
     description: 'Gabung komunitas sekarang!',
   },
 ];

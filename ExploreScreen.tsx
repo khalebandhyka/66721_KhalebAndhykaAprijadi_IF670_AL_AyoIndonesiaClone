@@ -25,7 +25,7 @@ interface VenueItem {
   id: string;
   name: string;
   location: string;
-  image: string;
+  image: any;
   rating: number;
   reviews: number;
   tag?: string;
@@ -37,33 +37,32 @@ const venueData: VenueItem[] = [
     id: '1',
     name: 'Md Futsal Rawa Buaya',
     location: 'Kota Jakarta Barat',
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg',
+    image: require('./assets/mdrawabuaya.jpg'),
     rating: 4.2,
     reviews: 14,
-    tag: 'Bisa DP',
-    price: 'Rp0,-',
+    price: 'Rp100.000,-',
   },
   {
     id: '2',
     name: 'Mini Kong Soccer Arena',
     location: 'Kota Jakarta Timur',
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg',
+    image: require('./assets/minikong.jpg'),
     rating: 4.8,
     reviews: 92,
-    price: 'Rp0,-',
+    tag: 'Bisa DP',
+    price: 'Rp500.000,-',
   },
   {
     id: '3',
-    name: 'Jumbo Sports Center',
-    location: 'Kota Jakarta Selatan',
-    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg',
-    rating: 4.5,
-    reviews: 63,
-    price: 'Rp0,-',
+    name: 'Rekket Space',
+    location: 'Kota Tangerang Selatan',
+    image: require('./assets/rekket.jpg'),
+    rating: 4.9,
+    reviews: 1556,
+    price: 'Rp59.000,-',
   },
 ];
 
-// Activity options
 const activityOptions = [
   { id: '1', name: 'Venue Booking' },
   { id: '2', name: 'Open Play' },
@@ -71,7 +70,6 @@ const activityOptions = [
   { id: '4', name: 'Competition' },
 ];
 
-// Location options
 const locationOptions = [
   { id: '1', name: 'Jakarta Barat' },
   { id: '2', name: 'Jakarta Timur' },
@@ -82,7 +80,6 @@ const locationOptions = [
   { id: '7', name: 'Bekasi' },
 ];
 
-// Sports Category options
 const sportsCategoryOptions = [
   { id: '1', name: 'Futsal', icon: 'sports-soccer' },
   { id: '2', name: 'Badminton', icon: 'sports-tennis' },
@@ -91,7 +88,6 @@ const sportsCategoryOptions = [
   { id: '5', name: 'Tennis', icon: 'sports-tennis' },
 ];
 
-// Date options (next 7 days)
 const generateDateOptions = () => {
   const options = [];
   const today = new Date();
@@ -118,7 +114,6 @@ const generateDateOptions = () => {
 
 const dateOptions = generateDateOptions();
 
-// Time options
 const timeOptions = [
   { id: '1', time: '08:00', period: 'AM' },
   { id: '2', time: '10:00', period: 'AM' },
@@ -130,17 +125,14 @@ const timeOptions = [
 ];
 
 const ExploreScreen = () => {
-  // State for dropdown sections
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   
-  // State for selected options
   const [selectedActivity, setSelectedActivity] = useState<string | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [selectedSport, setSelectedSport] = useState<string | null>(null);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   
-  // Check if all fields are filled
   const allFieldsFilled = 
     selectedActivity !== null && 
     selectedLocation !== null && 
@@ -148,7 +140,6 @@ const ExploreScreen = () => {
     selectedDate !== null && 
     selectedTime !== null;
 
-  // Toggle section expansion
   const toggleSection = (section: string) => {
     if (expandedSection === section) {
       setExpandedSection(null);
@@ -157,11 +148,10 @@ const ExploreScreen = () => {
     }
   };
 
-  // Render venue item for Latest Search
   const renderVenueItem = ({ item }: { item: VenueItem }) => (
     <TouchableOpacity style={styles.venueCard}>
       <View style={styles.imageContainer}>
-        <Image source={{ uri: item.image }} style={styles.venueImage} />
+        <Image source={ item.image } style={styles.venueImage} />
         <View style={styles.locationTag}>
           <Ionicons name="location" size={14} color="#fff" />
           <Text style={styles.locationTagText}>{item.location}</Text>

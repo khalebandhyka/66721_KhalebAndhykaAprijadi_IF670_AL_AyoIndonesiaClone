@@ -2,8 +2,7 @@ import type React from "react"
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, StatusBar, ScrollView } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 
-// Define the hourly rate for the venue
-const HOURLY_RATE = 59000 // In Indonesian Rupiah (Rp)
+const HOURLY_RATE = 59000 // 
 
 const ConfirmationPage: React.FC<{ navigation: any; route: any }> = ({ navigation, route }) => {
   // Get data from route params
@@ -71,9 +70,7 @@ const ConfirmationPage: React.FC<{ navigation: any; route: any }> = ({ navigatio
 
   const timeSlots = generateTimeSlots()
 
-  // Handle payment selection
   const handleSelectPayment = () => {
-    // Navigate to payment screen (to be implemented)
     navigation.navigate("PaymentMethod", {
       venueName,
       selectedDate,
@@ -83,26 +80,19 @@ const ConfirmationPage: React.FC<{ navigation: any; route: any }> = ({ navigatio
     })
   }
 
-  // Handle edit booking
   const handleEditBooking = () => {
     navigation.goBack()
   }
 
-  // Handle delete booking
   const handleDeleteBooking = () => {
-    // Show confirmation dialog and handle deletion
-    // For now, just go back to previous screen
     navigation.goBack()
   }
 
-  // Handle add booking
   const handleAddBooking = () => {
     navigation.goBack()
   }
 
-  // Handle check schedule
   const handleCheckSchedule = () => {
-    // Implementation for checking schedule
   }
 
   return (
@@ -311,7 +301,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: "#fff",
+    backgroundColor: "rgba(155, 0, 0, 0.1)",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -319,7 +309,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    backgroundColor: "rgba(155, 0, 0, 0.1)",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -327,7 +317,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(155, 0, 0, 0.1)",
     justifyContent: "center",
     alignItems: "center",
   },

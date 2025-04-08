@@ -160,17 +160,14 @@ const handleStartTimeChange = (hours: number, minutes: number, isPM: boolean) =>
 
   const handleEndTimeChange = (hours: number, minutes: number, isPM: boolean) => {
     if (selectedDate) {
-      // Create a new date object with the selected date and time
       const newEndTime = new Date(selectedDate)
 
-      // Convert 12-hour format to 24-hour format
       let hour24 = hours
       if (isPM && hours < 12) hour24 += 12
       if (!isPM && hours === 12) hour24 = 0
 
       newEndTime.setHours(hour24, minutes, 0, 0)
 
-      // Ensure end time is after start time
       if (newEndTime <= startTime) {
         newEndTime.setHours(startTime.getHours() + 1)
       }

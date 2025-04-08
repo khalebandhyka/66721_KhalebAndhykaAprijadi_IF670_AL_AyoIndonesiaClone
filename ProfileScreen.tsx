@@ -134,32 +134,32 @@ const achievements: Achievement[] = [
 const matchHistory: HistoryMatch[] = [
   {
     id: '1',
-    date: '15 May 2023',
-    opponent: 'Team Alpha',
+    date: '21 January 2025',
+    opponent: 'Viktor Axelsen',
     sport: 'Badminton',
     result: 'win',
     score: '21-15, 21-18',
   },
   {
     id: '2',
-    date: '10 May 2023',
-    opponent: 'John Doe',
+    date: '29 March 2025',
+    opponent: 'Ben Shelton',
     sport: 'Tennis',
     result: 'loss',
     score: '4-6, 3-6',
   },
   {
     id: '3',
-    date: '5 May 2023',
-    opponent: 'FC Fighters',
+    date: '22 March 2025',
+    opponent: 'Hura-hura United',
     sport: 'Mini Soccer',
     result: 'win',
     score: '3-2',
   },
   {
     id: '4',
-    date: '28 April 2023',
-    opponent: 'Sarah Smith',
+    date: '5 April 2025',
+    opponent: 'Caesar Eka Nathanael',
     sport: 'Badminton',
     result: 'win',
     score: '21-19, 21-15',
@@ -169,26 +169,21 @@ const matchHistory: HistoryMatch[] = [
 const ProfileScreen = () => {
   const [activeTab, setActiveTab] = useState('stats');
   
-  // Sport category modals
   const [sportCategoryModalVisible, setSportCategoryModalVisible] = useState(false);
   const [skillLevelModalVisible, setSkillLevelModalVisible] = useState(false);
   const [addSportModalVisible, setAddSportModalVisible] = useState(false);
   const [editSportModalVisible, setEditSportModalVisible] = useState(false);
   
-  // Selected sport for skill level modal
   const [selectedSport, setSelectedSport] = useState<SportCategory | null>(null);
   
-  // User's selected sports
   const [userSports, setUserSports] = useState<SportCategory[]>([
     { id: '1', name: 'Badminton', icon: 'badminton', skillLevel: 'Intermediate' },
     { id: '2', name: 'Tennis', icon: 'tennis', skillLevel: 'Beginner' },
     { id: '3', name: 'Mini Soccer', icon: 'soccer', skillLevel: 'Advanced' },
   ]);
   
-  // Available sports for adding (excluding already selected ones)
   const [availableSports, setAvailableSports] = useState<SportCategory[]>([]);
   
-  // Update available sports when userSports changes
   React.useEffect(() => {
     const userSportIds = userSports.map(sport => sport.id);
     const filteredSports = availableSportCategories
@@ -197,7 +192,6 @@ const ProfileScreen = () => {
     setAvailableSports(filteredSports);
   }, [userSports]);
 
-  // Handle skill level selection
   const handleSkillLevelSelect = (level: string) => {
     if (selectedSport) {
       const updatedUserSports = userSports.map(sport => 
@@ -210,7 +204,6 @@ const ProfileScreen = () => {
     }
   };
 
-  // Handle adding new sports
   const handleAddSports = () => {
     const selectedNewSports = availableSports.filter(sport => sport.isSelected);
     if (selectedNewSports.length === 0) {
@@ -224,7 +217,7 @@ const ProfileScreen = () => {
         id: sport.id,
         name: sport.name,
         icon: sport.icon,
-        skillLevel: 'Beginner' // Default skill level
+        skillLevel: 'Beginner' 
       }))
     ];
     
@@ -232,7 +225,6 @@ const ProfileScreen = () => {
     setAddSportModalVisible(false);
   };
 
-  // Handle sport selection in add sport modal
   const toggleSportSelection = (id: string) => {
     const updatedSports = availableSports.map(sport => 
       sport.id === id 
@@ -242,13 +234,11 @@ const ProfileScreen = () => {
     setAvailableSports(updatedSports);
   };
 
-  // Handle sport deletion
   const handleDeleteSport = (id: string) => {
     const updatedSports = userSports.filter(sport => sport.id !== id);
     setUserSports(updatedSports);
   };
 
-  // Handle sport reordering
   const handleMoveUp = (index: number) => {
     if (index === 0) return;
     const newSports = [...userSports];
@@ -485,8 +475,8 @@ const ProfileScreen = () => {
         {/* Profile Info */}
         <View style={styles.profileInfoContainer}>
           <Image 
-            source={{ uri: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg' }} 
-            style={styles.profileImage} 
+              source={require('./assets/ayoindonesiaavaatar.jpg')} 
+              style={styles.profileImage} 
           />
           <Text style={styles.profileName}>Guest #69</Text>
           
@@ -644,15 +634,15 @@ const ProfileScreen = () => {
           <View style={styles.communitiesContainer}>
             <View style={styles.communityCard}>
               <Image 
-                source={{ uri: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg' }} 
-                style={styles.communityImage} 
+              source={require('./assets/badminjakarta.jpeg')} 
+              style={styles.communityImage} 
               />
               <Text style={styles.communityName}>Badminton Jakarta</Text>
               <Text style={styles.communityMembers}>128 members</Text>
             </View>
             <View style={styles.communityCard}>
               <Image 
-                source={{ uri: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg' }} 
+                source={require('./assets/futsalloper.jpg')} 
                 style={styles.communityImage} 
               />
               <Text style={styles.communityName}>Futsal Lovers</Text>
@@ -660,7 +650,7 @@ const ProfileScreen = () => {
             </View>
             <View style={styles.communityCard}>
               <Image 
-                source={{ uri: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg' }} 
+                source={require('./assets/tennisclub.jpg')} 
                 style={styles.communityImage} 
               />
               <Text style={styles.communityName}>Tennis Club</Text>
@@ -688,26 +678,26 @@ const ProfileScreen = () => {
             <View style={styles.upcomingMatchTeams}>
               <View style={styles.upcomingMatchTeam}>
                 <Image 
-                  source={{ uri: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg' }} 
+                  source={require('./assets/indonesia.jpg')} 
                   style={styles.upcomingMatchTeamImage} 
                 />
-                <Text style={styles.upcomingMatchTeamName}>Your Team</Text>
+                <Text style={styles.upcomingMatchTeamName}>Indonesia</Text>
               </View>
               <View style={styles.upcomingMatchVs}>
                 <Text style={styles.upcomingMatchVsText}>VS</Text>
               </View>
               <View style={styles.upcomingMatchTeam}>
                 <Image 
-                  source={{ uri: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__539877413_0.jpg-Yt0rh6SilEaHD3bauyH2QcyOeS7F4Y.jpeg' }} 
+                  source={require('./assets/britain.jpg')} 
                   style={styles.upcomingMatchTeamImage} 
                 />
-                <Text style={styles.upcomingMatchTeamName}>Team Alpha</Text>
+                <Text style={styles.upcomingMatchTeamName}>England</Text>
               </View>
             </View>
             <View style={styles.upcomingMatchLocation}>
               <Ionicons name="location-outline" size={16} color="#666" />
               <Text style={styles.upcomingMatchLocationText}>
-                GOR Badminton Senayan, Jakarta
+                Istora Senayan, Jakarta
               </Text>
             </View>
             <View style={styles.upcomingMatchButtons}>
