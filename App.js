@@ -6,8 +6,6 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { useFonts, Poppins_400Regular, Poppins_700Bold } from '@expo-google-fonts/poppins';
 import AppLoading from 'expo-app-loading';
-
-// Screens
 import SplashScreen from './SplashScreen';
 import HomeScreen from './HomeScreen';
 import DashboardScreen from './DashboardScreen';
@@ -20,6 +18,7 @@ import DatePickingScreen from './DatePickingScreen';
 import ConfirmationPage from './ConfirmationPage';
 import PaymentMethod from './PaymentMethod';
 import PaymentConfirmation from './PaymentConfirmation';
+import LoginPage from './LoginPage';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -90,6 +89,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Splash" component={SplashScreen} />
+        <Stack.Screen name="LoginPage" component={LoginPage} />
         <Stack.Screen name="MainTabs" component={MainTabs} />
         <Stack.Screen name="VenueBookingScreen" component={VenueBookingScreen} />
         <Stack.Screen name="VenueDetailScreen" component={VenueDetailScreen} />

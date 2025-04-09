@@ -77,7 +77,6 @@ interface VenueItem {
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const [showChallenge, setShowChallenge] = useState(true);
 
-    // Venue item renderer for FlatList
     const renderVenueItem = ({ item }: { item: VenueItem }) => (
         <TouchableOpacity style={styles.venueCard}>
           <View style={styles.imageContainer}>
