@@ -64,7 +64,7 @@ const VenueBookingScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       location: "BSD",
       image: require('./assets/tantowi.jpeg'),
       rating: 4.7,
-      price: "Rp75.000,-/jam",
+      price: "Rp100.000,-/jam",
       distance: "1.5 km",
       isNew: true,
     },
@@ -104,7 +104,7 @@ const VenueBookingScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       location: "BSD",
       image: require('./assets/tantowi.jpeg'),
       rating: 4.7,
-      price: "Rp75.000,-/jam",
+      price: "Rp100.000,-/jam",
       distance: "1.5 km",
     },
     {
